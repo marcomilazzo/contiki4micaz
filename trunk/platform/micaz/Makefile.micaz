@@ -1,0 +1,19 @@
+CONTIKI_TARGET_DIRS = . dev
+CONTIKI_CORE=contiki-micaz
+CONTIKI_TARGET_MAIN = ${CONTIKI_CORE}.o
+
+CONTIKI_TARGET_SOURCEFILES +=	cfs-eeprom.c contiki-micaz-main.c \
+				leds-arch.c cc2420.c
+
+CONTIKIAVR=$(CONTIKI)/cpu/atmega128
+CONTIKIBOARD=.
+
+#CONTIKI_PLAT_DEFS = -DF_CPU=8000000UL -DAUTO_CRC_PADDING=2
+# MicaZ runs on Clock rate 7.3728 MHz
+CONTIKI_PLAT_DEFS = -DF_CPU=7372800UL -DAUTO_CRC_PADDING=2
+
+MCU=atmega128
+
+CLEAN += *.$(TARGET)
+
+include $(CONTIKIAVR)/Makefile.atmega128
