@@ -132,6 +132,7 @@ endif
 	$(OBJDUMP) -zhD $< > $@
 
 ### Upload image
+# Since not all platforms use avrdude, this should be in the platform spacific Makefile
 %.u: %.hex
 	avrdude ${AVRDUDE_OPTIONS} -P ${AVRDUDE_PORT} -c ${AVRDUDE_PROGRAMMER} -p ${MCU} -U flash:w:$<
 
