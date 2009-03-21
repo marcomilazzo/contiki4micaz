@@ -1,9 +1,9 @@
-CONTIKI_TARGET_DIRS = . dev
+CONTIKI_TARGET_DIRS = . dev dev/sensors
 CONTIKI_CORE=contiki-micaz
 CONTIKI_TARGET_MAIN = ${CONTIKI_CORE}.o
 
 CONTIKI_TARGET_SOURCEFILES +=	cfs-eeprom.c contiki-micaz-main.c \
-				leds-arch.c cc2420.c
+				leds-arch.c cc2420.c mts300.c
 
 CONTIKIAVR=$(CONTIKI)/cpu/atmega128
 CONTIKIBOARD=.
@@ -17,3 +17,19 @@ MCU=atmega128
 CLEAN += *.$(TARGET)
 
 include $(CONTIKIAVR)/Makefile.atmega128
+
+ifeq ($(PRGBOARD), )
+  PRGBOARD = mib510
+endif
+
+ifeq ($(PORT), )
+  PORT = /dev/ttyS0 
+endif
+
+PRGBOARD_FILE = $(CONTIKI)/platform/$(TARGET)/buildscripts/Makefile.$(PRGBOARD)
+HAVE_PRGBOARD_FILE = $(wildcard $(PRGBOARD_FILE))
+
+ifneq ($(strip $(HAVE_PRGBOARD_FILE)), )
+  include $(PRGBOARD_FILE)
+endif 
+
