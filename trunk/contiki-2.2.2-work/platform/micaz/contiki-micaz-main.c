@@ -62,7 +62,7 @@ void
 init_usart(void)
 {
   /* Second rs232 port for debugging */
-  rs232_init(RS232_PORT_0, USART_BAUD_28800,
+  rs232_init(RS232_PORT_0, USART_BAUD_9600,
              USART_PARITY_NONE | USART_STOP_BITS_1 | USART_DATA_BITS_8);
 
   /* Redirect stdout to second port */
