@@ -133,8 +133,9 @@ endif
 
 ### Upload image
 # Since not all platforms use avrdude, this should be in the platform spacific Makefile
-%.u: %.hex
-	avrdude ${AVRDUDE_OPTIONS} -P ${AVRDUDE_PORT} -c ${AVRDUDE_PROGRAMMER} -p ${MCU} -U flash:w:$<
+# The following is moved to platform specific Makefile(only for MICAz).
+#%.u: %.hex
+#	avrdude ${AVRDUDE_OPTIONS} -P ${AVRDUDE_PORT} -c ${AVRDUDE_PROGRAMMER} -p ${MCU} -U flash:w:$<
 
 symbols.c:
 	@${CONTIKI}/tools/make-empty-symbols
