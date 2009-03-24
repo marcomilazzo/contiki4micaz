@@ -12,7 +12,7 @@ static void
 recv_uc(struct unicast_conn *c, rimeaddr_t *from)
 {
   leds_on(LEDS_RED);
-  printf_P(PSTR("unicast message received from %d.%d\n"),from->u8[0], from->u8[1]);
+  printf("unicast message received from %d.%d\n",from->u8[0], from->u8[1]);
   clock_wait(1);
   leds_off(LEDS_RED);
 
